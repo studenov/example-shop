@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [MainController::class, 'index']);
+Route::get('/categories', [MainController::class, 'categories']);
+Route::get('/{category}', [MainController::class, 'category']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/mobile/{product}', [MainController::class, 'product']);
+
+
