@@ -18,27 +18,37 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>
-                        <a href="">
-                            <img height="56px" src="">
-                            123
-                        </a>
-                    </td>
-                    <td><span class="badge">1</span>
-                        <div class="btn-group">
-                            <a type="button" class="btn btn-danger" href=""><span
-                                    class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
-                            <a type="button" class="btn btn-success" href=""><span
-                                    class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                        </div>
-                    </td>
-                    <td>71990 руб.</td>
-                    <td>71990 руб.</td>
-                </tr>
+                @foreach($order->products as $product)
+                    <tr>
+                        <td>
+                            <a href="{{ route('product', [$product->category->code, $product->code]) }}">
+                                <img height="56px" src="">
+                                {{ $product->name }}
+                            </a>
+                        </td>
+                        <td><span class="badge">{{ $product->pivot->count }}</span>
+                            <div class="btn-group">
+                                <form action="{{ route('basket-remove', $product) }}" method="POST">
+                                    <button type="submit" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                    </button>
+                                    @csrf
+                                </form>
+                                <form action="{{ route('basket-add', $product) }}" method="POST">
+                                    <button type="submit" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                    @csrf
+                                </form>
+                            </div>
+                        </td>
+                        <td>{{ $product->price }} грн.</td>
+                        <td>{{ $product->getPriceForCount() }} грн.</td>
+                    </tr>
+                @endforeach
                 <tr>
                     <td colspan="3">Общая стоимость:</td>
-                    <td>71990 руб.</td>
+                    <td>{{ $order->getFullPrice() }} грн.</td>
                 </tr>
                 </tbody>
             </table>
