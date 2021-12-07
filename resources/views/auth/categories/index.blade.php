@@ -33,7 +33,8 @@
                                 <a class="btn btn-warning" type="button" href="{{ route('categories.edit', $category) }}">Редактировать</a>
                                 @csrf
                                 @method('DELETE')
-                                <input class="btn btn-danger" type="submit" value="Удалить"></form>
+                                <input class="btn btn-danger" type="submit" value="Удалить">
+                            </form>
                         </div>
                     </td>
                 </tr>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\Admin\OrderController;
@@ -33,8 +34,9 @@ Route::group([
 ], function () {
     Route::group(['middleware' => 'is_admin'], function () {
         Route::get('/orders', [OrderController::class, 'index'])->name('home');
+        Route::resource('categories', CategoryController::class);
+        Route::resource('products', ProductController::class);
     });
-    Route::resource('categories', CategoryController::class);
 });
 
 Route::group(['prefix' => 'basket'], function (){

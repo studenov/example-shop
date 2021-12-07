@@ -20,7 +20,6 @@
                             </div>
                         </div>
                         <br>
-                        <br>
                         <div class="form-group">
                             <label for="phone" class="control-label col-lg-offset-3 col-lg-2">Номер телефона: </label>
                             <div class="col-lg-4">

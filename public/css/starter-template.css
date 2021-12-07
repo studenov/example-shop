@@ -11,6 +11,10 @@ table {
     text-align: left;
 }
 
+div.caption h3{
+    height: 80px;
+}
+
 div.thumbnail img {
     max-height: 200px;
 }

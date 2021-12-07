@@ -4,11 +4,14 @@
 
 @section('content')
 
-    <h1>123</h1>
-    <h2>{{ $product }}</h2>
-    <p>Цена: <b>71990 руб.</b></p>
-    <img src="">
-    <p>123</p>
-    <a class="btn btn-success" href="">Добавить в корзину</a>
-
+    <h1>{{ $product->name }}</h1>
+    <p>Цена: <b>{{ $product->price }} грн.</b></p>
+    <img src="{{ Storage::url($product->image) }}">
+    <br>
+    <br>
+    <p>{{ $product->description }}</p>
+    <form action="{{ route('basket-add', $product) }}" method="POST">
+        <button type="submit" class="btn btn-success" role="button">Добавить в корзину</button>
+        @csrf
+    </form>
 @endsection
