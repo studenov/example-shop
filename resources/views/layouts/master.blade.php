@@ -23,7 +23,6 @@
                 <li @routeactive('index')><a href="{{ route('index') }}">Все товары</a></li>
                 <li @routeactive('categor*')><a href="{{ route('categories') }}">Категории</a></li>
                 <li @routeactive('basket*')><a href="{{ route('basket') }}">В корзину</a></li>
-                <li><a href="{{ route('index') }}">Сбросить проект в начальное состояние</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

@@ -28,7 +28,7 @@ class LoginController extends Controller
             return route('home');
         } else {
             return route('index');
-        };
+        }
     }
 
     /**

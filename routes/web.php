@@ -39,10 +39,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/orders', [OrdersController::class, 'index'])->name('orders-index');
         Route::get('/orders/{order}', [OrdersController::class, 'show'])->name('orders-show');
     });
-    Route::group([
-        'prefix' => 'admin',
-        'namespace' => 'Admin',
-    ], function () {
+    Route::group(['prefix' => 'admin'], function () {
         Route::group(['middleware' => 'is_admin'], function () {
             Route::get('/orders', [OrderController::class, 'index'])->name('home');
             Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders-show');
