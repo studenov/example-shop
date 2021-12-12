@@ -4,15 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
-    protected $fillable = ['name', 'code', 'price', 'category_id', 'description', 'image', 'hit', 'new', 'recommend'];
+    protected $fillable = ['name', 'code', 'price', 'category_id', 'description', 'image', 'hit', 'new', 'recommend', 'count'];
 
     const MARKED_PRODUCT = 1;
     const DEFAULT_PRODUCT = 0;
+    const IS_ENDING_COUNT = 5;
 
     public function category()
     {
@@ -92,5 +95,15 @@ class Product extends Model
     public function scopeCode($query, $code)
     {
         return $query->where('code', $code)->first();
+    }
+
+    public function isAvailable()
+    {
+        return !$this->trashed() && $this->count > 0;
+    }
+
+    public function isEnding()
+    {
+        return $this->count <= self::IS_ENDING_COUNT && $this->count > 0;
     }
 }

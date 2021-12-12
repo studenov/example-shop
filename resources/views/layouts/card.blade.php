@@ -12,15 +12,24 @@
             @if($product->isHit())
                 <span class="badge badge-danger">Хит продаж!</span>
             @endif
+
+            @if($product->isEnding())
+                <span class="badge badge-info">Заканчивается!</span>
+            @endif
         </div>
         <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}">
         <div class="caption">
             <h3>{{ $product->name }}</h3>
             <p>{{ $product->price }} грн.</p>
             <form action="{{ route('basket-add', $product) }}" method="POST">
-                <button type="submit" class="btn btn-primary" role="button">В корзину</button>
-                <a href="{{ route('product', [isset($category) ? $category->code : $product->category->code, $product->code]) }}" class="btn btn-default"
-                   role="button">Подробнее</a>
+
+                @if($product->isAvailable())
+                    <button type="submit" class="btn btn-primary" role="button">В корзину</button>
+                @else
+                    <button class="btn btn-secondary" role="button" disabled>Не доступен</button>
+                @endif
+                <a href="{{ route('product', [isset($category) ? $category->code : $product->category->code, $product->code]) }}"
+                   class="btn btn-default" role="button">Подробнее</a>
                 @csrf
             </form>
         </div>
