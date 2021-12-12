@@ -9,16 +9,16 @@ use App\Models\Product;
 class MainController extends Controller
 {
     public function index(ProductsFilterRequest $request) {
-        $productsQuery = Product::query();
+        $productsQuery = Product::with('category');
         if ($request->filled('price_from')) {
-            $productsQuery->where('price', '>=', $request->price_from);
+            $productsQuery->priceFrom($request->price_from);
         }
         if ($request->filled('price_to')) {
-            $productsQuery->where('price', '<=', $request->price_to);
+            $productsQuery->priceTo($request->price_to);
         }
         foreach (['hit', 'new', 'recommend'] as $field) {
             if ($request->has($field)) {
-                $productsQuery->where($field, Product::MARKED_PRODUCT);
+                $productsQuery->$field();
             }
         }
 
@@ -32,12 +32,12 @@ class MainController extends Controller
     }
 
     public function category($code) {
-        $category = Category::where('code', $code)->first();
+        $category = Category::code($code);
         return view('category', compact('category'));
     }
 
     public function product($category, $code = null) {
-        $product = Product::where('code', $code)->first();
+        $product = Product::code($code);
         return view('product', compact('product'));
     }
 

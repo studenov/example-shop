@@ -15,4 +15,9 @@ class Category extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function scopeCode($query, $code)
+    {
+        return $query->where('code', $code)->first();
+    }
 }

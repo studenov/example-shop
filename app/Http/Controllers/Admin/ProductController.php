@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Http\Traits\ImageTrait;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+
+    use ImageTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -40,13 +43,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $params = $request->all();
-        unset($params['image']);
-        if($request->has('image')){
-            $path = $request->file('image')->store('products');
-            $params['image'] = $path;
-        }
-        Product::create($params);
+        $this->storeParams($request, Product::class ,'products');
         return redirect()->route('products.index');
     }
 
@@ -82,19 +79,7 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
-        $params = $request->all();
-        unset($params['image']);
-        if($request->has('image')){
-            Storage::delete($product->image);
-            $path = $request->file('image')->store('products');
-            $params['image'] = $path;
-        }
-        foreach (['new', 'hit', 'recommend'] as $fieldName) {
-            if (!isset($params[$fieldName])) {
-                $params[$fieldName] = 0;
-            }
-        }
-        $product->update($params);
+        $this->updateParams($request, $product);
         return redirect()->route('products.index');
     }
 

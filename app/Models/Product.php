@@ -63,4 +63,34 @@ class Product extends Model
             return true;
         }
     }
+
+    public function scopeHit($query)
+    {
+        return $query->where('hit', self::MARKED_PRODUCT);
+    }
+
+    public function scopeNew($query)
+    {
+        return $query->where('new', self::MARKED_PRODUCT);
+    }
+
+    public function scopeRecommend($query)
+    {
+        return $query->where('recommend', self::MARKED_PRODUCT);
+    }
+
+    public function scopePriceFrom($query, $price)
+    {
+        return $query->where('price', '>=', $price);
+    }
+
+    public function scopePriceTo($query, $price)
+    {
+        return $query->where('price', '<=', $price);
+    }
+
+    public function scopeCode($query, $code)
+    {
+        return $query->where('code', $code)->first();
+    }
 }
