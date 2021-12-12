@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\Person\OrdersController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ResetController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,7 @@ Auth::routes([
 ]);
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('get-logout');
+Route::get('reset',  [ResetController::class, 'reset'])->name('reset');
 
 Route::middleware(['auth'])->group(function () {
     Route::group([
