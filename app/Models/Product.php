@@ -94,7 +94,7 @@ class Product extends Model
 
     public function scopeCode($query, $code)
     {
-        return $query->where('code', $code)->first();
+        return $query->where('code', $code);
     }
 
     public function isAvailable()

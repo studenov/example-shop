@@ -4,7 +4,8 @@ namespace App\Http\Traits;
 
 use Illuminate\Support\Facades\Storage;
 
-trait ImageTrait {
+trait ImageTrait
+{
 
     public function storeParams($request, $model, $table)
     {

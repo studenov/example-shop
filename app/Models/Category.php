@@ -18,6 +18,6 @@ class Category extends Model
 
     public function scopeCode($query, $code)
     {
-        return $query->where('code', $code)->first();
+        return $query->where('code', $code);
     }
 }

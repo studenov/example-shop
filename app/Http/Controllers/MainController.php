@@ -32,12 +32,12 @@ class MainController extends Controller
     }
 
     public function category($code) {
-        $category = Category::code($code);
+        $category = Category::code($code)->firstOrFail();
         return view('category', compact('category'));
     }
 
     public function product($category, $code) {
-        $product = Product::withTrashed()->code($code);
+        $product = Product::withTrashed()->code($code)->firstOrFail();
         return view('product', compact('product'));
     }
 
