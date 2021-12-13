@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class OrderRequest extends FormRequest
 {
@@ -23,11 +24,17 @@ class OrderRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+
+        $rules = [
             'name' => 'required|min:3|max:255',
-            'phone' => 'required|numeric|min:3',
-            'email' => 'required|email',
+            'phone' => 'required|numeric|min:3'
         ];
+
+        if(!Auth::check()) {
+            $rules = ['email' => 'required|email'];
+        }
+
+        return $rules;
     }
 
     public function messages()
