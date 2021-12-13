@@ -9,6 +9,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id'];
+
     const STATUS_ACTIVE = 1;
 
     public function products()
