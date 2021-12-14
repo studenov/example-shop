@@ -34,6 +34,16 @@
         </form>
     @else
         <button class="btn btn-secondary" role="button" disabled>Не доступен</button>
+        <br>
+        <span>Сообщить мне, когда товар появится в наличии:</span>
+        <form method="POST" action="{{ route('subscription', $product) }}">
+            @csrf
+            @include('auth.layouts.error', ['fieldName' => 'email'])
+            <input type="text" name="email"
+                   value="{{ old('email', isset(Auth::user()->email) ? Auth::user()->email : null) }}">
+            </input>
+            <button type="submit" class="btn btn-primary" role="button">Отправить</button>
+        </form>
     @endif
 
 @endsection

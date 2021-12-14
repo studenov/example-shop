@@ -2,11 +2,10 @@
 
 namespace App\Classes;
 
-use App\Mail\OrderCreated;
+use App\Http\Controllers\MailController;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class Basket
 {
@@ -60,7 +59,8 @@ class Basket
         if (!$this->countAvailable(true)) {
             return false;
         }
-        Mail::to($email)->send(new OrderCreated($name, $this->getOrder()));
+        $mail = new MailController();
+        $mail->sendOrderMail($email, $name, $this->getOrder());
         return $this->order->saveOrder($name, $phone);
     }
 

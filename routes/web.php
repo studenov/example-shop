@@ -31,6 +31,7 @@ Auth::routes([
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('get-logout');
 Route::get('reset',  [ResetController::class, 'reset'])->name('reset');
+Route::post('subscription/{product}', [MainController::class, 'subscribe'])->name('subscription');
 
 Route::middleware(['auth'])->group(function () {
     Route::group([
@@ -64,6 +65,7 @@ Route::group(['prefix' => 'basket'], function (){
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('/categories', [MainController::class, 'categories'])->name('categories');
+
 Route::get('/{category}', [MainController::class, 'category'])->name('category');
 Route::get('/{category}/{product}', [MainController::class, 'product'])->name('product');
 
