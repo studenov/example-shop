@@ -1,19 +1,19 @@
 @extends('layouts.master')
 
-@section('title', 'Корзина')
+@section('title', __('main.titles.cart'))
 
 @section('content')
 
-    <h1>Корзина</h1>
-    <p>Оформление заказа</p>
+    <h1>@lang('main.basket.cart')</h1>
+    <p>@lang('main.basket.ordering')</p>
     <div class="panel">
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Название</th>
-                <th>Кол-во</th>
-                <th>Цена</th>
-                <th>Стоимость</th>
+                <th>@lang('main.basket.name')</th>
+                <th>@lang('main.basket.count')</th>
+                <th>@lang('main.basket.price')</th>
+                <th>@lang('main.basket.cost')</th>
             </tr>
             </thead>
             <tbody>
@@ -41,19 +41,19 @@
                             </form>
                         </div>
                     </td>
-                    <td>{{ $product->price }} грн.</td>
-                    <td>{{ $product->getPriceForCount() }} грн.</td>
+                    <td>{{ $product->price }} @lang('main.properties.uah').</td>
+                    <td>{{ $product->getPriceForCount() }} @lang('main.properties.uah').</td>
                 </tr>
             @endforeach
             <tr>
-                <td colspan="3">Общая стоимость:</td>
-                <td>{{ $order->getFullSum() }} грн.</td>
+                <td colspan="3">@lang('main.basket.full_cost'):</td>
+                <td>{{ $order->getFullSum() }} @lang('main.properties.uah').</td>
             </tr>
             </tbody>
         </table>
         <br>
         <div class="btn-group pull-right" role="group">
-            <a type="button" class="btn btn-success" href="{{ route('basket-place') }}">Оформить заказ</a>
+            <a type="button" class="btn btn-success" href="{{ route('basket-place') }}">@lang('main.basket.place_order')</a>
         </div>
     </div>
 
