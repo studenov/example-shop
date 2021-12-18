@@ -17,9 +17,9 @@
                 <span class="badge badge-info">@lang('main.properties.out')</span>
             @endif
         </div>
-        <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}">
+        <img src="{{ Storage::url($product->image) }}" alt="{{ $product->__('name') }}">
         <div class="caption">
-            <h3>{{ $product->name }}</h3>
+            <h3>{{ $product->__('name') }}</h3>
             <p>{{ $product->price }} @lang('main.properties.uah').</p>
             <form action="{{ route('basket-add', $product) }}" method="POST">
 

@@ -23,7 +23,7 @@
                 <li @routeactive('index')><a href="{{ route('index') }}">@lang('main.master_layout.all_products')</a></li>
                 <li @routeactive('categor*')><a href="{{ route('categories') }}">@lang('main.master_layout.categories')</a></li>
                 <li @routeactive('basket*')><a href="{{ route('basket') }}">@lang('main.master_layout.cart')</a></li>
-                <li><a href="{{ route('reset') }}">@lang('main.master_layout.reset_project')</a></li>
+                <li><a href="{{ route('reset') }}" onclick="return resetProject()">@lang('main.master_layout.reset_project')</a></li>
                 <li><a href="{{ route('locale', __('main.master_layout.set_lang')) }}">@lang('main.master_layout.change_lang') @lang('main.master_layout.set_lang')</a></li>
             </ul>
 
@@ -58,3 +58,13 @@
 </div>
 </body>
 </html>
+<script type="text/javascript">
+    function resetProject()  {
+        var result = confirm("Do you want reset project?");
+        if(result)  {
+            alert("The project will be reset!");
+        } else {
+            return false;
+        }
+    }
+</script>

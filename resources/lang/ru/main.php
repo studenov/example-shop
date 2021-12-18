@@ -9,7 +9,7 @@ return [
         'all_products' => 'Все товары',
         'categories' => 'Категории',
         'cart' => 'В корзину',
-        'reset_project' => 'Сбросить проект в начальное состояние',
+        'reset_project' => 'Сбросить проект',
         'login' => 'Войти',
         'logout' => 'Выйти',
         'my_orders' => 'Мои заказы',

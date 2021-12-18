@@ -6,26 +6,26 @@
 
     <div class="col-md-12">
         @if($product->isNew())
-            <span class="badge badge-success">@lang('main.new')</span>
+            <span class="badge badge-success">@lang('main.properties.new')</span>
         @endif
 
         @if($product->isRecommend())
-            <span class="badge badge-warning">@lang('main.recommend')</span>
+            <span class="badge badge-warning">@lang('main.properties.recommend')</span>
         @endif
 
         @if($product->isHit())
-            <span class="badge badge-danger">@lang('main.hit')</span>
+            <span class="badge badge-danger">@lang('main.properties.hit')</span>
         @endif
 
         @if($product->isEnding())
-            <span class="badge badge-info">@lang('main.out')</span>
+            <span class="badge badge-info">@lang('main.properties.out')</span>
         @endif
-        <h1>{{ $product->name }}</h1>
+        <h1>{{ $product->__('name') }}</h1>
         <p>Цена: <b>{{ $product->price }} @lang('main.properties.uah').</b></p>
         <img src="{{ Storage::url($product->image) }}">
         <br>
         <br>
-        <p>{{ $product->description }}</p>
+        <p>{{ $product->__('description') }}</p>
     </div>
     @if($product->isAvailable())
         <form action="{{ route('basket-add', $product) }}" method="POST">
