@@ -20,7 +20,7 @@
         <img src="{{ Storage::url($product->image) }}" alt="{{ $product->__('name') }}">
         <div class="caption">
             <h3>{{ $product->__('name') }}</h3>
-            <p>{{ $product->price }} @lang('main.properties.uah').</p>
+            <p>{{ $product->price }} {{ $currencySymbol }}</p>
             <form action="{{ route('basket-add', $product) }}" method="POST">
 
                 @if($product->isAvailable())

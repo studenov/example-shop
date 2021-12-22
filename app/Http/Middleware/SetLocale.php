@@ -19,7 +19,7 @@ class SetLocale
     {
         $locale = session('locale');
         if($locale === null) {
-            session(['locale' => 'en']);
+            session(['locale' => 'ru']);
         }
         App::setLocale($locale);
         return $next($request);

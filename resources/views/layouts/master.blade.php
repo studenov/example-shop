@@ -11,6 +11,7 @@
 
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/starter-template.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -25,6 +26,16 @@
                 <li @routeactive('basket*')><a href="{{ route('basket') }}">@lang('main.master_layout.cart')</a></li>
                 <li><a href="{{ route('reset') }}" onclick="return resetProject()">@lang('main.master_layout.reset_project')</a></li>
                 <li><a href="{{ route('locale', __('main.master_layout.set_lang')) }}">@lang('main.master_layout.change_lang') @lang('main.master_layout.set_lang')</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $currencySymbol }}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @foreach($currencies as $currency)
+                            <li><a href="{{ route('currency', $currency->code) }}">{{ $currency->symbol }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -68,3 +79,7 @@
         }
     }
 </script>
+<script src="{{ asset('/js/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+
+

@@ -21,7 +21,7 @@
             <span class="badge badge-info">@lang('main.properties.out')</span>
         @endif
         <h1>{{ $product->__('name') }}</h1>
-        <p>Цена: <b>{{ $product->price }} @lang('main.properties.uah').</b></p>
+        <p>Цена: <b>{{ $product->price }} {{ $currencySymbol }}</b></p>
         <img src="{{ Storage::url($product->image) }}">
         <br>
         <br>

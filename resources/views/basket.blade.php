@@ -41,13 +41,13 @@
                             </form>
                         </div>
                     </td>
-                    <td>{{ $product->price }} @lang('main.properties.uah').</td>
-                    <td>{{ $product->getPriceForCount() }} @lang('main.properties.uah').</td>
+                    <td>{{ $product->price }} {{ $currencySymbol }}</td>
+                    <td>{{ $product->getPriceForCount() }} {{ $currencySymbol }}</td>
                 </tr>
             @endforeach
             <tr>
                 <td colspan="3">@lang('main.basket.full_cost'):</td>
-                <td>{{ $order->getFullSum() }} @lang('main.properties.uah').</td>
+                <td>{{ $order->calculateFullSum() }} {{ $currencySymbol }}</td>
             </tr>
             </tbody>
         </table>

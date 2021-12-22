@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductsFilterRequest;
 use App\Http\Requests\SubscriptionRequest;
 use App\Models\Category;
+use App\Models\Currency;
 use App\Models\Product;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\App;
@@ -14,11 +15,15 @@ class MainController extends Controller
     public function index(ProductsFilterRequest $request)
     {
         $productsQuery = Product::with('category');
+        if(is_null(session('currency'))) {
+            session(['currency' => 'UAH']);
+        }
+        $currencyRate = Currency::byCode(session('currency'))->first()->rate;
         if ($request->filled('price_from')) {
-            $productsQuery->priceFrom($request->price_from);
+            $productsQuery->priceFrom($request->price_from * $currencyRate);
         }
         if ($request->filled('price_to')) {
-            $productsQuery->priceTo($request->price_to);
+            $productsQuery->priceTo($request->price_to * $currencyRate);
         }
         foreach (['hit', 'new', 'recommend'] as $field) {
             if ($request->has($field)) {
@@ -65,6 +70,13 @@ class MainController extends Controller
         }
         session(['locale' => $locale]);
         App::setLocale($locale);
+        return redirect()->back();
+    }
+
+    public function changeCurrency($currencyCode)
+    {
+        $currency = Currency::ByCode($currencyCode)->firstOrFail();
+        session(['currency' => $currency->code]);
         return redirect()->back();
     }
 

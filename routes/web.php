@@ -32,6 +32,7 @@ Auth::routes([
 Route::get('/logout', [LoginController::class, 'logout'])->name('get-logout');
 Route::get('reset',  [ResetController::class, 'reset'])->name('reset');
 Route::get('locale/{locale}', [MainController::class, 'changeLocale'])->name('locale');
+Route::get('currency/{currencyCode}', [MainController::class, 'changeCurrency'])->name('currency');
 
 Route::middleware(['set_locale'])->group(function() {
     Route::middleware(['auth'])->group(function () {

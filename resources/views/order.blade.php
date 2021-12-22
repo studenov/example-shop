@@ -7,7 +7,7 @@
     <h1>@lang('main.approve_order'):</h1>
     <div class="container">
         <div class="row justify-content-center">
-            <p>@lang('main.order.full_cost'): <b>{{ $order->calculateFullSum() }} @lang('main.properties.uah').</b></p>
+            <p>@lang('main.order.full_cost'): <b>{{ $order->calculateFullSum() }} {{ $currencySymbol }}</b></p>
             <form action="{{ route('basket-confirm') }}" method="POST">
                 <div>
                     <p>@lang('main.order.personal_data'):</p>
